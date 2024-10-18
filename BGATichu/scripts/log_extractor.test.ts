@@ -1,6 +1,10 @@
 import LogExtractor from "./log_extractor";
 
-test('getSinglePlayCards', () => {
+describe('getSinglePlayCards', () => {
     const logExtractor = new LogExtractor();
-    expect(logExtractor.getSinglePlayCards("Plays 2")).toStrictEqual(["2"]);
+
+    it.each([["2", "2"], ["10", "10"], ["DRAGON", "DRAGON"], ["queen", "q"]])
+        ('parses %s as %s', (card, want) => {
+            expect(logExtractor.getSinglePlayCards("Plays " + card)).toStrictEqual([want]);
+        });
 });
