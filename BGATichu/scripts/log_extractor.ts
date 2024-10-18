@@ -6,7 +6,7 @@ const playsStraightRE = /plays Run of \d+ cards from (\d{1,2}|\w)\w* to (\d{1,2}
 const playsFullHouseRE = /plays (\d{1,2}|\w)\w*'?s? full of (\d{1,2}|\w)\w*'?s?/i
 const playsQuadBombRE = /plays Bomb of four (\d{1,2}|\w)/i
 const playsStraightBombRE = /plays Straight flush bomb starting from (\d{1,2}|\w)\w* to (\d{1,2}|\w)/i
-const playsSingleRE = /plays (\d{1,2}|[a-z]+)/i
+const playsSingleRE = /plays (\d{1,2}|dragon|dog|[a-z])/i
 
 const cardsRanked = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 
@@ -28,10 +28,6 @@ class LogExtractor {
             return [];
         }
         let card = match[1]
-
-        if (card != "DOG" && card != "DRAGON") {
-            card = card.at(0) ?? "";
-        }
         console.log("found single " + card);
         return [card];
     }
